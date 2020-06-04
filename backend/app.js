@@ -25,7 +25,7 @@ db.once("open", function (callback) {
   console.log("Database connection succeeded for covid19");
 });
 
-cron.schedule('01 15 * * * *', async function () {
+cron.schedule('23 59 * * * *', async () => {
     var dateObj = new Date;
     var month = dateObj.getUTCMonth() + 1;
     var day = dateObj.getUTCDate();
@@ -106,18 +106,18 @@ cron.schedule('01 15 * * * *', async function () {
 });
 
 
-app.get('/', async function (req, res) {
+app.get('/', async (req, res) => {
     db.collection('covid_statistics').findOne()
     .then((result) => {
         if (result) {
-            res.json(result);
+            res.status(200).json(result);
         }
     })
 });
 
 app.get('/markers.geojson', (req, res) => {
     
-        db.collection('covid_statistics').findOne().then(function (results) {
+        db.collection('covid_statistics').findOne().then((results) => {
             if (results) {
                 var data = [];
                 var result = JSON.parse(JSON.stringify(results));
