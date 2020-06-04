@@ -88,15 +88,6 @@ cron.schedule('01 15 * * * *', async function () {
                                 country_statistics: data.sort((a, b) => b.confirmed - a.confirmed)
                             })
 
-                            // Data.deleteOne();
-                            // items.save().then((newData) => {
-                            //     console.log(newData);
-                                
-                            //   }).catch( error => {
-                            //     res.status(500).json({
-                            //       message: 'Failed to create post'
-                            //     })
-                            //   });
                             db.collection("covid_statistics").deleteOne({});
                             db.collection("covid_statistics").insertOne(items).then(() => {
                                 console.log("inserted successfully");
