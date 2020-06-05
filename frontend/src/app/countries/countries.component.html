@@ -1,0 +1,88 @@
+<!--Spinner-->
+<div class="ui dimmer" [class.active] = 'loading'>
+  <div class="ui large text loader">Loading...</div>
+</div>
+
+<section class="text-gray-700 body-font max-h-screen">
+  <div class="container px-5 py-24 mx-auto flex flex-wrap">
+    <div class="flex flex-wrap -m-4">
+      <div class="p-4 lg:w-1/2 md:w-full max-h-screen overflow-auto">
+        <div
+          class="flex border-2 rounded-lg border-gray-200 p-8 sm:flex-row flex-col"
+        >
+          <div class="flex ml-6 items-center">
+            <span class="mr-3">COUNTRY</span>
+            <div class="relative">
+              <select
+                class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-indigo-500 text-base pl-3 pr-10 w-64"
+              >
+                <option *ngFor="let country of countries">{{country.country}}</option>
+              </select>
+              <span
+                class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center"
+              >
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  class="w-4 h-4"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex border-2 rounded-lg border-gray-200 p-8 m-8 sm:flex-row flex-col"
+          *ngFor="let country of countries" >
+          <div
+            class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"
+          >
+            <!-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 h-8" viewBox="0 0 24 24">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg> -->
+            <img src="{{ country.flag }}" />
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-gray-900 text-lg tracking-widest title-font mb-1">
+              {{ country.country }}
+            </h3>
+            <div class="flex mb-4">
+              <span class="flex items-center">
+                <span class="text-gray-600 ml-3"
+                  ><b>Confirmed:</b> {{ country.confirmed }}</span
+                >
+              </span>
+              <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
+                <span class="text-gray-600 ml-3"
+                  ><b>Active:</b> {{ country }}</span
+                >
+              </span>
+              <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
+                <span class="text-gray-600 ml-3"
+                  ><b>Recovered:</b> {{ country.recovered }}</span
+                >
+              </span>
+              <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
+                <span class="text-gray-600 ml-3"
+                  ><b>Deaths:</b> {{ country.deaths }}</span
+                >
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="lg:w-1/2 w-2/4 mb-10 lg:mb-0 rounded-lg overflow-hidden max-h-screen"
+      >
+      <google-chart [type]="chart.ColumnChart" [height]="chart.height" style="width: 100%;" [options]="chart.options" [data]='datatable' [title]="chart.title">
+      </google-chart>
+      </div>
+    </div>
+  </div>
+</section>
