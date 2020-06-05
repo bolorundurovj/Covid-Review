@@ -25,7 +25,7 @@ db.once("open", function (callback) {
   console.log("Database connection succeeded for covid19");
 });
 
-cron.schedule('23 59 * * * *', async () => {
+cron.schedule('16 40 * * * *', async () => {
     var dateObj = new Date;
     var month = dateObj.getUTCMonth() + 1;
     var day = dateObj.getUTCDate();
@@ -55,6 +55,7 @@ cron.schedule('23 59 * * * *', async () => {
     var totalConfirmed = 0;
     var totalDeaths = 0;
     var totalRecovered = 0;
+    var totalActive = 0;
 
     const file = fs.createWriteStream(fileName);
 
@@ -71,6 +72,7 @@ cron.schedule('23 59 * * * *', async () => {
                                 totalConfirmed = parseInt(results[i].Confirmed) + totalConfirmed;
                                 totalDeaths = parseInt(results[i].Deaths) + totalDeaths;
                                 totalRecovered = parseInt(results[i].Recovered) + totalRecovered;
+                                totalActive = parseInt(results[i].Active) + totalActive;
                             }
 
                             for (var j = 0; j < countryList.length; j++) {
@@ -84,6 +86,7 @@ cron.schedule('23 59 * * * *', async () => {
                                 total_confirmed: totalConfirmed,
                                 total_deaths: totalDeaths,
                                 total_recovered: totalRecovered,
+                                total_active: totalActive,
                                 last_date_updated: formatted_date,
                                 country_statistics: data.sort((a, b) => b.confirmed - a.confirmed)
                             })
