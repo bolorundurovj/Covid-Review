@@ -21,7 +21,9 @@ export class CountriesComponent implements OnInit {
   dateWiseData;
   selectedCountryData;
 
-  queryp = 'US';
+  queryp;
+
+  uquery;
 
   loading = true;
 
@@ -48,6 +50,7 @@ export class CountriesComponent implements OnInit {
         this.countries = result.country_statistics;
         let test = this.countries;
 
+
         test.forEach(country => {
           if(country.country == this.queryp) {
             let countryArray= [];
@@ -60,9 +63,15 @@ export class CountriesComponent implements OnInit {
 
         },
         complete: () => {
+
           this.loading = false;
         }
     });
+  }
+
+  updateQuery(query: string){
+    this.queryp = query;
+    this.uquery = query;
   }
 
 }
