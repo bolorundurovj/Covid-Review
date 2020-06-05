@@ -8,7 +8,7 @@
       <select
                 class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-indigo-500 text-base pl-3 pr-10 w-80"
               >
-                <option *ngFor="let country of countries">{{country.country}}</option>
+                <option value="{{country.country}}" *ngFor="let country of countries">{{country.country}}</option>
               </select>
     </div>
   </div>

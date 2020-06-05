@@ -21,6 +21,8 @@ export class CountriesComponent implements OnInit {
   dateWiseData;
   selectedCountryData;
 
+  queryp = 'US';
+
   loading = true;
 
   chart = {
@@ -44,6 +46,18 @@ export class CountriesComponent implements OnInit {
       next: (result) => {
 
         this.countries = result.country_statistics;
+        let test = this.countries;
+
+        test.forEach(country => {
+          if(country.country == this.queryp) {
+            let countryArray= [];
+            countryArray.push(country);
+            this.countries = countryArray;
+          }
+          console.log(this.countries);
+
+        });
+
         },
         complete: () => {
           this.loading = false;
