@@ -48,13 +48,15 @@ export class CountriesComponent implements OnInit {
         let test = this.countries;
         let countryArray;
 
-          test.forEach((country) => {
-            countryArray = [];
-            countryArray.push(country);
+          // test.forEach((country) => {
+          //   countryArray = [];
+          //   countryArray.push(country);
+          //   this.countries = countryArray;
+          //   //console.log(this.countries);
+          // });
 
-            console.log(this.countries);
-          });
-          this.countries = countryArray;
+          console.log((this.countries));
+
       },
       complete: () => {
         this.loading = false;
