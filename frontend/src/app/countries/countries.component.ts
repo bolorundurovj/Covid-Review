@@ -6,16 +6,16 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-countries',
   templateUrl: './countries.component.html',
-  styleUrls: ['./countries.component.css']
+  styleUrls: ['./countries.component.css'],
 })
 export class CountriesComponent implements OnInit {
-  private dateWiseDataUrl = 'https://ncovid19api.herokuapp.com/timeline/'
+  private dateWiseDataUrl = 'https://ncovid19api.herokuapp.com/timeline/';
 
   totalConfirmed = 0;
   totalActive = 0;
   totalDeaths = 0;
   totalRecovered = 0;
-  globalData ;
+  globalData;
   datatable;
   countries;
   dateWiseData;
@@ -23,13 +23,11 @@ export class CountriesComponent implements OnInit {
 
   queryp;
 
-  uquery;
-
   loading = true;
 
   chart = {
-    PieChart: "PieChart",
-    ColumnChart: "ColumnChart",
+    PieChart: 'PieChart',
+    ColumnChart: 'ColumnChart',
     height: 500,
     title: 'Country Stats',
     options: {
@@ -38,40 +36,29 @@ export class CountriesComponent implements OnInit {
         easing: 'out',
       },
       is3D: true,
+    },
+  };
 
-  }}
-
-  constructor(private dataService: DataService, private http: HttpClient) { }
+  constructor(private dataService: DataService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.dataService.getGlobalData().subscribe({
       next: (result) => {
-
         this.countries = result.country_statistics;
         let test = this.countries;
+        let countryArray;
 
-
-        test.forEach(country => {
-          if(country.country == this.queryp) {
-            let countryArray= [];
+          test.forEach((country) => {
+            countryArray = [];
             countryArray.push(country);
-            this.countries = countryArray;
-          }
-          console.log(this.countries);
 
-        });
-
-        },
-        complete: () => {
-
-          this.loading = false;
-        }
+            console.log(this.countries);
+          });
+          this.countries = countryArray;
+      },
+      complete: () => {
+        this.loading = false;
+      },
     });
   }
-
-  updateQuery(query: string){
-    this.queryp = query;
-    this.uquery = query;
-  }
-
 }
