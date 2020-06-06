@@ -5,7 +5,6 @@ const cors = require('cors');
 const cron = require('node-cron');
 const request = require('request');
 const mongoose = require('mongoose');
-const path = require('path');
 
 const Data = require("./models/data");
 
@@ -16,11 +15,10 @@ let port = 2020;
 const app = express();
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, "public")));
 
 let countryList = require('./country_list.json');
 
-mongoose.connect(process.env.URL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/covid19", {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on("error", console.log.bind(console, "connection error"));
 db.once("open", function (callback) {
