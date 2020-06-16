@@ -25,13 +25,13 @@ db.once("open", function (callback) {
   console.log("Database connection succeeded for covid19");
 });
 
-cron.schedule('23 59 * * * *', async () => {
+cron.schedule('12 43 * * * *', async () => {
     var dateObj = new Date;
     var month = dateObj.getUTCMonth() + 1;
-    var day = dateObj.getUTCDate();
+    var day = dateObj.getUTCDate() -1;
     var year = dateObj.getUTCFullYear();
 
-    var newDay = day-1;
+    var newDay = day;
 
     var month_name = ["JAN", "FEB", "MAR", "APR", "MAY", "JUNE", "JULY", "AUG", "SEP", "OCT", "NOV", "DEC"];
     var formattedMonth = month;
