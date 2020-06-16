@@ -15,11 +15,12 @@ export class CountriesComponent implements OnInit {
   totalActive = 0;
   totalDeaths = 0;
   totalRecovered = 0;
-  globalData;
   datatable;
   countries;
   dateWiseData;
-  selectedCountryData;
+
+
+  country;
 
   queryp;
 
@@ -28,6 +29,7 @@ export class CountriesComponent implements OnInit {
   chart = {
     PieChart: 'PieChart',
     ColumnChart: 'ColumnChart',
+    LineChart: 'LineChart',
     height: 500,
     title: 'Country Stats',
     options: {
@@ -42,20 +44,10 @@ export class CountriesComponent implements OnInit {
   constructor(private dataService: DataService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.dataService.getGlobalData().subscribe({
+    this.dataService.getCountryData('CN').subscribe({
       next: (result) => {
-        this.countries = result.country_statistics;
-        let test = this.countries;
-        let countryArray;
-
-          // test.forEach((country) => {
-          //   countryArray = [];
-          //   countryArray.push(country);
-          //   this.countries = countryArray;
-          //   //console.log(this.countries);
-          // });
-
-          console.log((this.countries));
+        this.countries = result[0];
+        console.log(this.countries);
 
       },
       complete: () => {
