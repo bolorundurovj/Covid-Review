@@ -15,7 +15,7 @@ export class CountriesComponent implements OnInit {
   totalActive = 0;
   totalDeaths = 0;
   totalRecovered = 0;
-  datatable;
+  datatable: any[] = [];
   countries;
   dateWiseData;
 
@@ -44,7 +44,13 @@ export class CountriesComponent implements OnInit {
   constructor(private dataService: DataService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.dataService.getCountryData('CN').subscribe({
+    this.updateCountry('Nigeria')
+  }
+
+  updateCountry(country: string) {
+    console.log(country);
+
+    this.dataService.getCountryData(country).subscribe({
       next: (result) => {
         this.countries = result[0];
         console.log(this.countries);
@@ -54,5 +60,16 @@ export class CountriesComponent implements OnInit {
         this.loading = false;
       },
     });
+
+    this.dataService.getDatewiseData(country).subscribe((result) => {
+      this.dateWiseData = result;
+      console.log(this.dateWiseData);
+      this.dateWiseData.forEach(data => {
+          this.datatable.push([data.date.toString(), data.cases]);
+          //console.log(this.datatable);
+      });
+      console.log(this.datatable);
+    });
+
   }
 }

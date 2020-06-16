@@ -22,7 +22,7 @@ export class DataService {
     );
   }
 
-  getCountryData(countryCode: string) {
+  getCountryData(countryN: string) {
     let test: any[] =[];
     return this.http
       .get<{
@@ -39,19 +39,29 @@ export class DataService {
           //console.log(result.country_statistics);
 
           result.country_statistics.forEach((contry) => {
-            if (contry['code'] == 'US') {
-              test.push(contry);
+            if (contry['country'] == countryN) {
+              console.log(contry);
+
+              test = Array(contry);
               //console.log(test);
             } else {
               test.push(contry['NG']);
               //console.log(test);
             }
           });
-          //console.log(test);
+          console.log(test);
 
           return test;
         })
       );
+  }
+
+  getDatewiseData(country: string) {
+    return this.http.get(`https://ncovid19api.herokuapp.com/timeline/${country}`).pipe(
+      map((result) => {
+        return result;
+      })
+    );
   }
 
 

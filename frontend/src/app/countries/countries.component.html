@@ -32,7 +32,7 @@
                       </svg>
                   </div>
 
-                  <input id="search-toggle" type="search" placeholder="search" class="block w-full bg-gray-200 focus:outline-none focus:bg-white focus:shadow-md text-gray-700 font-bold rounded-full pl-12 pr-4 py-3" onkeyup="updateSearchResults(this.value);">
+                  <input id="search-toggle" #search name="search" (change)="updateCountry(search.value)" type="search" placeholder="search" class="block w-full bg-gray-200 focus:outline-none focus:bg-white focus:shadow-md text-gray-700 font-bold rounded-full pl-12 pr-4 py-3" onkeyup="updateSearchResults(this.value);">
 
               </div>
               <!-- / Search-->
@@ -81,7 +81,7 @@
                       <div class="rounded-full p-3 bg-gray-300"><i class="fa fa-wallet fa-fw fa-inverse text-indigo-500"></i></div>
                   </div>
                   <div class="flex-1">
-                      <h3 class="font-bold text-3xl">{{countries.confirmed | currency: '#'}} <span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
+                      <h3 class="font-bold text-3xl">{{countries.confirmed | number}} <span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
                       <h5 class="font-bold text-gray-500">Total Confirmed</h5>
                   </div>
               </div>
@@ -95,7 +95,7 @@
                       <div class="rounded-full p-3 bg-gray-300"><i class="fas fa-users fa-fw fa-inverse text-indigo-500"></i></div>
                   </div>
                   <div class="flex-1">
-                      <h3 class="font-bold text-3xl">{{countries.recovered | currency: '#'}} <span class="text-orange-500"><i class="fas fa-exchange-alt"></i></span></h3>
+                      <h3 class="font-bold text-3xl">{{countries.recovered | number}} <span class="text-orange-500"><i class="fas fa-exchange-alt"></i></span></h3>
                       <h5 class="font-bold text-gray-500">Total Recovered</h5>
                   </div>
               </div>
@@ -109,7 +109,7 @@
                       <div class="rounded-full p-3 bg-gray-300"><i class="fas fa-user-plus fa-fw fa-inverse text-indigo-500"></i></div>
                   </div>
                   <div class="flex-1">
-                      <h3 class="font-bold text-3xl">{{countries.deaths | currency: '#'}} <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
+                      <h3 class="font-bold text-3xl">{{countries.deaths | number}} <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
                       <h5 class="font-bold text-gray-500">Total Deaths</h5>
                   </div>
               </div>
@@ -123,7 +123,7 @@
                       <div class="rounded-full p-3 bg-gray-300"><i class="fas fa-server fa-fw fa-inverse text-indigo-500"></i></div>
                   </div>
                   <div class="flex-1">
-                      <h3 class="font-bold text-3xl">{{countries.active | currency: '#'}}</h3>
+                      <h3 class="font-bold text-3xl">{{countries.active | number}}</h3>
                       <h5 class="font-bold text-gray-500">Total Active</h5>
                   </div>
               </div>
@@ -147,7 +147,7 @@
                       <h5 class="font-bold text-black">Graph</h5>
                   </div>
                   <div class="p-5">
-                      <div class="ct-chart ct-golden-section" id="chart1"></div>
+                    <google-chart [type]="chart.LineChart" [height]="chart.height" class="ct-chart ct-golden-section" id="chart1" style="width: 100%;" [options]="chart.options" [data]='datatable'></google-chart>
                   </div>
                   <!--/Graph Card-->
 
@@ -157,35 +157,23 @@
                           <h5 class="font-bold text-black">Table</h5>
                       </div>
                       <div class="p-5">
-                          <table class="w-full p-5 text-gray-700">
+                          <table class="w-full p-5 text-gray-700 ">
                               <thead>
                                   <tr>
-                                      <th class="text-left text-blue-900">Name</th>
-                                      <th class="text-left text-blue-900">Side</th>
-                                      <th class="text-left text-blue-900">Role</th>
+                                      <th class="text-left text-blue-900">Country</th>
+                                      <th class="text-left text-blue-900">Date</th>
+                                      <th class="text-left text-blue-900">Cases</th>
                                   </tr>
                               </thead>
 
-                              <tbody>
-                                  <tr>
-                                      <td>Obi Wan Kenobi</td>
-                                      <td>Light</td>
-                                      <td>Jedi</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Greedo</td>
-                                      <td>South</td>
-                                      <td>Scumbag</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Darth Vader</td>
-                                      <td>Dark</td>
-                                      <td>Sith</td>
+                              <tbody class="h-32 max-h-screen overflow-auto">
+                                  <tr *ngFor="let case of dateWiseData">
+                                      <td>{{case.country}}</td>
+                                      <td>{{case.date | date}}</td>
+                                      <td>{{case.cases}}</td>
                                   </tr>
                               </tbody>
                           </table>
-
-                          <p class="py-2"><a href="#">See More issues...</a></p>
 
                       </div>
                   </div>
