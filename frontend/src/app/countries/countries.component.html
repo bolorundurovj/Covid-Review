@@ -1,10 +1,3 @@
-<!-- Side bar-->
-<div id="sidebar" class="h-screen w-16 menu bg-white text-white px-4 flex items-center nunito static fixed shadow">
-
-
-
-</div>
-
 <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
 
   <div class="h-40 lg:h-20 w-full flex flex-wrap">
@@ -151,27 +144,28 @@
                   <!--Table Card-->
                   <div class="p-3">
                       <div class="border-b p-3">
-                          <h5 class="font-bold text-black">Table</h5>
+                          <h5 class="font-bold text-black">Timeline of Confirmed Cases</h5>
                       </div>
-                      <div class="p-5">
-                          <table class="w-full p-5 text-gray-700 ">
-                              <thead>
-                                  <tr>
-                                      <th class="text-left text-blue-900">Country</th>
-                                      <th class="text-left text-blue-900">Date</th>
-                                      <th class="text-left text-blue-900">Cases</th>
-                                  </tr>
-                              </thead>
 
-                              <tbody class="h-32 max-h-screen overflow-auto">
-                                  <tr *ngFor="let case of dateWiseData">
-                                      <td>{{case.country}}</td>
-                                      <td>{{case.date | date}}</td>
-                                      <td>{{case.cases}}</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-
+                      <!-- component -->
+                      <div class="container">
+                        <table class="text-left w-full">
+                          <thead class="bg-black flex text-white w-full">
+                            <tr class="flex w-full mb-4">
+                              <th class="p-4 w-1/4">Country</th>
+                              <th class="p-4 w-1/4">Date</th>
+                              <th class="p-4 w-1/4">No of Cases</th>
+                            </tr>
+                          </thead>
+                          <!-- Remove the nasty inline CSS fixed height on production and replace it with a CSS class — this is just for demonstration purposes! -->
+                          <tbody class="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style="height: 50vh;">
+                            <tr class="flex w-full mb-4" *ngFor="let case of dateWiseData">
+                              <td class="p-4 w-1/4">{{case.country}}</td>
+                              <td class="p-4 w-1/4">{{case.date | date}}</td>
+                              <td class="p-4 w-1/4">{{case.cases}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                   </div>
                   <!--/table Card-->
@@ -237,3 +231,7 @@
   </div>
 
 </div>
+
+
+
+
