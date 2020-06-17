@@ -44,11 +44,13 @@ export class CountriesComponent implements OnInit {
   constructor(private dataService: DataService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.updateCountry('Nigeria')
+    this.updateCountry('Nigeria');
+    this.updateChart('Nigeria');
   }
 
   updateCountry(country: string) {
     console.log(country);
+
 
     this.dataService.getCountryData(country).subscribe({
       next: (result) => {
@@ -61,15 +63,29 @@ export class CountriesComponent implements OnInit {
       },
     });
 
+    // this.dataService.getDatewiseData(country).subscribe((result) => {
+    //   this.dateWiseData = result;
+    //   console.log(this.dateWiseData);
+    //   this.dateWiseData.forEach(data => {
+    //       this.datatable.push([data.date.toString(), data.cases]);
+    //       //console.log(this.datatable);
+    //   });
+    //   console.log(this.datatable);
+    // });
+  }
+
+  updateChart(country: string) {
+    this.chart = Object.create(this.chart);
+    this.datatable = [];
     this.dataService.getDatewiseData(country).subscribe((result) => {
       this.dateWiseData = result;
       console.log(this.dateWiseData);
       this.dateWiseData.forEach(data => {
           this.datatable.push([data.date.toString(), data.cases]);
+          this.datatable = Object.assign([], this.datatable)
           //console.log(this.datatable);
       });
       console.log(this.datatable);
     });
-
   }
 }
