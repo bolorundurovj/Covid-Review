@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  private allDataUrl = 'http://localhost:2020/'
+  private allDataUrl = 'https://fast-depths-66478.herokuapp.com/'
 
 
   constructor(private http: HttpClient) { }
