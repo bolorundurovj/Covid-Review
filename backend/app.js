@@ -10,7 +10,7 @@ const Data = require("./models/data");
 
 require('dotenv').config();
 
-let port = 2020;
+let port = PORT || 2020;
 
 const app = express();
 
