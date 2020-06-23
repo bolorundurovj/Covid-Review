@@ -263,7 +263,7 @@ function getStatistics(country_obj, results) {
         confirmed: confirmed,
         deaths: deaths,
         recovered: recovered,
-        active:active,
+        active: active,
         states: statistics.sort().filter(function(el,i,a){return i===a.indexOf(el)})
     }
     return country_statistics;
