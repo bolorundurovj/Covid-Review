@@ -25,7 +25,7 @@ db.once("open", function (callback) {
   console.log("Database connection succeeded for covid19");
 });
 
-cron.schedule('23 59 * * * *', async () => {
+cron.schedule('16 03 * * * *', async () => {
     var dateObj = new Date;
     var month = dateObj.getUTCMonth() + 1;
     var day = dateObj.getUTCDate() -1;
@@ -140,6 +140,7 @@ app.get('/markers.geojson', (req, res) => {
                         var confirmed = 0;
                         var deaths = 0;
                         var recovered = 0;
+                        var active = 0;
 
                         var name = result.country_statistics[i].states[j].name;
                         
@@ -151,7 +152,8 @@ app.get('/markers.geojson', (req, res) => {
                             confirmed = confirmed + parseInt(e.confirmed);
                             deaths = deaths + parseInt(e.deaths);
                             recovered = recovered + parseInt(e.recovered);
-                            total_cases = parseInt(confirmed) + parseInt(deaths) + parseInt(recovered);
+                            active = active + parseInt(e.active);
+                            total_cases = parseInt(confirmed) + parseInt(deaths) + parseInt(recovered) + parseInt(active);
                         });
                         
                         var item = {
@@ -168,6 +170,7 @@ app.get('/markers.geojson', (req, res) => {
                                 confirmed: confirmed,
                                 deaths: deaths,
                                 recovered: recovered,
+                                active: active,
                                 total_cases: total_cases
                             }
                         }
@@ -193,6 +196,7 @@ function getStatistics(country_obj, results) {
     var confirmed = 0;
     var deaths = 0;
     var recovered = 0;
+    var active = 0;
 
     var state_name;
     var state_latitude;
@@ -214,6 +218,7 @@ function getStatistics(country_obj, results) {
             confirmed = parseInt(results[i].Confirmed) + confirmed;
             deaths = parseInt(results[i].Deaths) + deaths;
             recovered = parseInt(results[i].Recovered) + recovered;
+            active = parseInt(results[i].Active) + active;
 
             if (results[i].Province_State.length > 0) {
                 state_name = results[i].Province_State;
@@ -233,6 +238,7 @@ function getStatistics(country_obj, results) {
             state_confirmed_count = results[i].Confirmed;
             state_deaths_count = results[i].Deaths;
             state_recovered_count = results[i].Recovered;
+            state_active_count = results[i].Active;
 
             var state_statistics = {
                 key: Math.random().toString(36).substr(2, 5),
@@ -242,7 +248,8 @@ function getStatistics(country_obj, results) {
                 longitude: state_longitude,
                 confirmed: state_confirmed_count,
                 deaths: state_deaths_count,
-                recovered: state_recovered_count
+                recovered: state_recovered_count,
+                active: state_active_count
             }
             statistics.push(state_statistics);
         }
@@ -256,6 +263,7 @@ function getStatistics(country_obj, results) {
         confirmed: confirmed,
         deaths: deaths,
         recovered: recovered,
+        active:active,
         states: statistics.sort().filter(function(el,i,a){return i===a.indexOf(el)})
     }
     return country_statistics;
