@@ -39,7 +39,7 @@ export class DataService {
           //console.log(result.country_statistics);
 
           result.country_statistics.forEach((contry) => {
-            if (contry['country'] == countryN) {
+            if (contry['country'] == countryN || contry['code'] == countryN) {
               console.log(contry);
 
               test = Array(contry);
