@@ -78,6 +78,8 @@ export class CountriesComponent implements OnInit {
     this.chart = Object.create(this.chart);
     this.datatable = [];
     this.dataService.getDatewiseData(country).subscribe((result) => {
+      console.log(result);
+
       this.dateWiseData = result;
       console.log(this.dateWiseData);
       this.dateWiseData.forEach(data => {
