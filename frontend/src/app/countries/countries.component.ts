@@ -19,6 +19,8 @@ export class CountriesComponent implements OnInit {
   countries;
   dateWiseData;
 
+  daten;
+
 
   country;
 
@@ -83,7 +85,8 @@ export class CountriesComponent implements OnInit {
       this.dateWiseData = result;
       console.log(this.dateWiseData);
       this.dateWiseData.forEach(data => {
-          this.datatable.push([data.date.toString(), data.cases]);
+        this.daten = new Date(Date.parse(data.date))
+          this.datatable.push([this.daten, data.cases]);
           this.datatable = Object.assign([], this.datatable)
           //console.log(this.datatable);
       });
