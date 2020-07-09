@@ -1,3 +1,2 @@
-
-backend/node_modules/opencollective-postinstall/package.json
-backend/node_modules
+/backend/node_modules
+/backend/.env
