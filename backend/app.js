@@ -17,7 +17,7 @@ const app = express();
 app.use(cors());
 
 let countryList = require('./country_list.json');
-const mongoURL = (process.env.URL).toString();
+const mongoURL = (process.env.URL);
 console.log(mongoURL);
 
 mongoose.connect(`${mongoURL}`, {useNewUrlParser: true, useUnifiedTopology: true});
