@@ -17,8 +17,10 @@ const app = express();
 app.use(cors());
 
 let countryList = require('./country_list.json');
+const mongoURL = (process.env.URL).toString();
+console.log(mongoURL);
 
-mongoose.connect(`${process.env.URL}`, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`${mongoURL}`, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on("error", console.log.bind(console, "connection error"));
 db.once("open", function (callback) {
