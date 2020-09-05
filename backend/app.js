@@ -25,7 +25,7 @@ db.once("open", function (callback) {
   console.log("Database connection succeeded for covid19");
 });
 
-cron.schedule('23 59 * * * *', async () => {
+cron.schedule('19 40 * * * *', async () => {
     var dateObj = new Date;
     var month = dateObj.getUTCMonth() + 1;
     var day = dateObj.getUTCDate() -1;
@@ -51,11 +51,11 @@ cron.schedule('23 59 * * * *', async () => {
     //var fileName = "04-13-2020.csv";
 
     const results = [];
-    var data = [];
-    var totalConfirmed = 0;
-    var totalDeaths = 0;
-    var totalRecovered = 0;
-    var totalActive = 0;
+    let data = [];
+    let totalActive = 0;
+    let totalConfirmed = 0;
+    let totalDeaths = 0;
+    let totalRecovered = 0;
 
     const file = fs.createWriteStream(fileName);
 
@@ -65,15 +65,21 @@ cron.schedule('23 59 * * * *', async () => {
             .on('finish', () => {
                 fs.createReadStream(fileName)
                     .pipe(csv())
-                    .on('data', (data) => results.push(data))
+                    .on('data', (data) => {results.push(data); console.log(data);})
                     .on('end', () => {                        
                         if (results.length > 0) {
+                            console.log(totalActive);
                             for (var i = 0; i < results.length; i++) {
                                 totalConfirmed = parseInt(results[i].Confirmed) + totalConfirmed;
                                 totalDeaths = parseInt(results[i].Deaths) + totalDeaths;
                                 totalRecovered = parseInt(results[i].Recovered) + totalRecovered;
-                                totalActive = parseInt(results[i].Active) + totalActive;
+                                totalActive = parseInt(results[i].Active !== (null || undefined || '') ? results[i].Active : '0') + totalActive;
+                                console.log(results[i].Active,totalActive);
                             }
+                            console.log(totalConfirmed);
+                            console.log(totalDeaths);
+                            console.log(totalRecovered);
+                            console.log(totalActive);
 
                             for (var j = 0; j < countryList.length; j++) {
                                 var country_obj = JSON.parse(JSON.stringify(countryList[j]));
