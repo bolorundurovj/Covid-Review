@@ -1,11 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Covid 1 tracker api",
+  "description": "Covid 19 tracker api",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app",
+    "test": "echo \"Message: no test specified\" && exit 0"
   },
   "keywords": [],
   "author": "Bolorunduro Valiant-Joshua",
