@@ -4,8 +4,8 @@
   "description": "Covid 19 tracker api",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
-    "test": "echo \"Message: no test specified\" && exit 0"
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Bolorunduro Valiant-Joshua",
