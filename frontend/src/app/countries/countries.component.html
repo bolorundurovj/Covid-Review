@@ -10,9 +10,8 @@
       <nav id="header" class="bg-gray-200 w-full lg:max-w-sm flex items-center border-b-1 border-gray-300 order-2 lg:order-1">
 
           <div class="px-2 w-full">
-              <select name="" class="bg-gray-300 border-2 border-gray-200 rounded-full w-full py-3 px-4 text-gray-500 font-bold leading-tight focus:outline-none focus:bg-white focus:shadow-md" id="form-field2">
-                  <option value="Default">Default is Nigeria</option>
-              </select>
+              <span name="" class="bg-gray-300 border-2 border-gray-200 rounded-full w-full py-3 px-4 text-gray-500 font-bold leading-tight focus:outline-none focus:bg-white focus:shadow-md" id="form-field2">Default is Nigeria
+              </span>
           </div>
 
       </nav>
@@ -29,7 +28,7 @@
                   </div>
 
                   <input id="search-toggle" #search name="search" (change)="updateCountry(search.value); updateChart(search.value)" type="search" placeholder="search" class="block w-full bg-gray-200 focus:outline-none focus:bg-white focus:shadow-md text-gray-700 font-bold rounded-full pl-12 pr-4 py-3" onkeyup="updateSearchResults(this.value);">
-                  <span class="text-gray-700 font-bold rounded-full pl-12 pr-4 py-3">ps: start each word in CAPS. i.e New Zealand OR use Country Code i.e NZ</span>
+                  <span class="text-gray-700 font-bold rounded-full pl-12 pr-4 py-3">PS: Start each word in <b>CAPS</b>. i.e New Zealand OR use <b>Country Code</b> i.e NZ</span>
 
               </div>
               <!-- / Search-->
@@ -41,11 +40,11 @@
                   <div class="relative text-sm">
                       <button id="userButton" class="flex items-center focus:outline-none mr-3">
                           <img class="w-8 h-8 rounded-full mr-4" [src]="countries.flag" alt="Avatar of User"> <span class="hidden md:inline-block">Hey There </span>
-                          <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+                          <!-- <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                               <g>
                                   <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z"></path>
                               </g>
-                          </svg>
+                          </svg> -->
                       </button>
                       <div id="userMenu" class="bg-white nunito rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
                           <ul class="list-reset">
@@ -169,7 +168,7 @@
                             <tr class="flex w-full mb-4" *ngFor="let case of dateWiseData">
                               <td class="p-4 w-1/4">{{case.country}}</td>
                               <td class="p-4 w-1/4">{{case.date | date}}</td>
-                              <td class="p-4 w-1/4">{{case.cases}}</td>
+                              <td class="p-4 w-1/4">{{case.cases | number}}</td>
                             </tr>
                           </tbody>
                         </table>
