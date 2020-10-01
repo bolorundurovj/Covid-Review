@@ -52,7 +52,5 @@ Feel free to check [issues page](https://github.com/bolorundurovj/Covid19-Tracke
 
 Give a ⭐️ if this project helped you!
 
-[![support us](https://img.shields.io/badge/become-a patreon%20us-orange.svg?cacheSeconds=2592000)](https://www.patreon.com/bolorundurovb)
-
 
 ***
