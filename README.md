@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 [![Twitter: bolorundurovb](https://img.shields.io/twitter/follow/bolorundurovb.svg?style=social)](https://twitter.com/bolorundurovb)
 
-> A simple Covid 19 Tracking Dashboard
+> A simple Covid 19 Tracking Dashboard built with the MEAN stack
 
 ### 🏠 [Homepage](http://evening-ravine-09092.herokuapp.com/)
 
