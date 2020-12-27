@@ -93,7 +93,7 @@ cron.schedule('23 59 * * * *', async () => {
           })
           .on('end', () => {
             if (results.length > 0) {
-              console.log(totalActive);
+              // console.log(totalActive);
               for (var i = 0; i < results.length; i++) {
                 totalConfirmed =
                   parseInt(results[i].Confirmed) + totalConfirmed;
@@ -106,12 +106,12 @@ cron.schedule('23 59 * * * *', async () => {
                       ? results[i].Active
                       : '0'
                   ) + totalActive;
-                console.log(results[i].Active, totalActive);
+                // console.log(results[i].Active, totalActive);
               }
-              console.log(totalConfirmed);
-              console.log(totalDeaths);
-              console.log(totalRecovered);
-              console.log(totalActive);
+              // console.log(totalConfirmed);
+              // console.log(totalDeaths);
+              // console.log(totalRecovered);
+              // console.log(totalActive);
 
               for (var j = 0; j < countryList.length; j++) {
                 var country_obj = JSON.parse(JSON.stringify(countryList[j]));
