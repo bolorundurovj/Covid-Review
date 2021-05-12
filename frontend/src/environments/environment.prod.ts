@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  api: 'https://fast-depths-66478.herokuapp.com/'
 };

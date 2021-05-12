@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,8 +15,10 @@
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "csv-parser": "^2.3.2",
+    "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.9.17",
     "node-cron": "^2.0.3",
     "opencollective-postinstall": "^2.0.3",

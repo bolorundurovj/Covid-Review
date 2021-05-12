@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private allDataUrl = 'https://fast-depths-66478.herokuapp.com/';
+  private allDataUrl = environment.api;
 
   constructor(private http: HttpClient) {}
 
