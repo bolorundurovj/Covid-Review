@@ -25,8 +25,7 @@ npm install
 ## Usage
 
 ```sh
-cd backend && npm run start
-cd frontend && ng serve
+ng serve
 ```
 
 ## Run tests
