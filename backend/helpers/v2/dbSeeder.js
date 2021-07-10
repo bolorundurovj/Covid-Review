@@ -15,22 +15,26 @@ const fileName = formattedDate + '.csv';
 const file = fs.createWriteStream(fileName);
 const csvFilePath = `./${fileName}`;
 
-new Promise((resolve, reject) => {
-    request({
-            uri: 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/' +
-                fileName,
-        })
-        .pipe(file)
-        .on('finish', () => {
-            console.log('written to file');
-            resolve();
-        })
-        .on('error', (error) => {
-            reject(error);
-        });
-}).catch((error) => {
-    console.log(`Something happened: ${error}`);
-});
+const create = async () => {
+    new Promise((resolve, reject) => {
+        request({
+                uri: 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/' +
+                    fileName,
+            })
+            .pipe(file)
+            .on('finish', () => {
+                console.log('written to file');
+                resolve();
+            })
+            .on('error', (error) => {
+                reject(error);
+            });
+    }).catch((error) => {
+        console.log(`Something happened: ${error}`);
+    });
+}
+
+create();
 
 class DocCollection extends Array {
     sum(key) {

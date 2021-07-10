@@ -18,7 +18,6 @@ app.use(cors());
 
 let countryList = require('./country_list.json');
 const mongoURL = process.env.URL;
-console.log(mongoURL);
 
 mongoose.connect(`${mongoURL}`, {
   useNewUrlParser: true,
@@ -30,7 +29,8 @@ db.once('open', function (callback) {
   console.log('Database connection succeeded for covid19');
 });
 
-cron.schedule('23 59 * * * *', async () => {
+cron.schedule('* * * * *', async () => {
+  console.log(`running cron`);
   var dateObj = new Date();
   var month = dateObj.getUTCMonth() + 1;
   var day = dateObj.getUTCDate() - 1;
@@ -52,7 +52,7 @@ cron.schedule('23 59 * * * *', async () => {
     'NOV',
     'DEC',
   ];
-  var formattedMonth = month;
+  let formattedMonth = month;
 
   if (month < 10) {
     month = '0' + month;
@@ -62,11 +62,8 @@ cron.schedule('23 59 * * * *', async () => {
   }
   newdate = month + '-' + day + '-' + year;
 
-  var formatted_date = day + ' ' + month_name[formattedMonth - 1] + ' ' + year;
-  var fileName = newdate + '.csv';
-
-  //var formatted_date = "13 APR 2020";
-  //var fileName = "04-13-2020.csv";
+  let formatted_date = day + ' ' + month_name[formattedMonth - 1] + ' ' + year;
+  let fileName = newdate + '.csv';
 
   const results = [];
   let data = [];
@@ -89,29 +86,15 @@ cron.schedule('23 59 * * * *', async () => {
           .pipe(csv())
           .on('data', (data) => {
             results.push(data);
-            console.log(data);
           })
           .on('end', () => {
             if (results.length > 0) {
-              // console.log(totalActive);
               for (var i = 0; i < results.length; i++) {
-                totalConfirmed =
-                  parseInt(results[i].Confirmed) + totalConfirmed;
-                totalDeaths = parseInt(results[i].Deaths) + totalDeaths;
-                totalRecovered =
-                  parseInt(results[i].Recovered) + totalRecovered;
-                totalActive =
-                  parseInt(
-                    results[i].Active !== (null || undefined || '')
-                      ? results[i].Active
-                      : '0'
-                  ) + totalActive;
-                // console.log(results[i].Active, totalActive);
+                totalConfirmed += +results[i].Confirmed || 0;
+                totalDeaths += +results[i].Deaths || 0;
+                totalRecovered += +results[i].Recovered || 0;
+                totalActive += +results[i].Active || 0;
               }
-              // console.log(totalConfirmed);
-              // console.log(totalDeaths);
-              // console.log(totalRecovered);
-              // console.log(totalActive);
 
               for (var j = 0; j < countryList.length; j++) {
                 var country_obj = JSON.parse(JSON.stringify(countryList[j]));
@@ -147,6 +130,9 @@ cron.schedule('23 59 * * * *', async () => {
   }).catch((error) => {
     console.log(`Something happened: ${error}`);
   });
+}, {
+  scheduled: true,
+  timezone: "Africa/Lagos"
 });
 
 exports.getAll = async (req, res) => {
