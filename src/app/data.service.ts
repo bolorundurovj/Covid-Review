@@ -21,9 +21,10 @@ export class DataService {
         total_active: number;
         last_date_updated: string;
         country_statistics: Array<string | number>;
-      }>(this.allDataUrl)
+      }>(`${this.allDataUrl}all`)
       .pipe(
         map((result) => {
+          console.log(result);
           return result;
         })
       );
@@ -40,7 +41,7 @@ export class DataService {
         total_active: number;
         last_date_updated: string;
         country_statistics: Array<string | number>;
-      }>(this.allDataUrl)
+      }>(`${this.allDataUrl}all`)
       .pipe(
         map((result) => {
           //console.log(result.country_statistics);
