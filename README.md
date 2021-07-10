@@ -1,4 +1,5 @@
 # Welcome to Covid 19 Tracker v2 👋
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4dd690c0-0db1-4325-9b36-d690152a3c76/deploy-status)](https://app.netlify.com/sites/zealous-joliot-e691de/deploys)
 ![Version](https://img.shields.io/badge/version-2.0.0-blue.svg?cacheSeconds=2592000)
 ![Prerequisite](https://img.shields.io/badge/node-12.x-blue.svg)
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/bolorundurovj/Covid19-Tracker-v2)
