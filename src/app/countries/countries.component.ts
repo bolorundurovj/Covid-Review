@@ -16,8 +16,9 @@ export class CountriesComponent implements OnInit {
   totalDeaths = 0;
   totalRecovered = 0;
   datatable: any[] = [];
-  countries;
+  countries: any;
   dateWiseData;
+  countryFlag = `https://www.countryflags.io/NG/flat/64.png`;
 
   daten;
 
@@ -25,6 +26,8 @@ export class CountriesComponent implements OnInit {
   country;
 
   queryp;
+
+
 
   loading = true;
 
@@ -57,6 +60,7 @@ export class CountriesComponent implements OnInit {
     this.dataService.getCountryData(country).subscribe({
       next: (result) => {
         this.countries = result[0];
+        this.countryFlag = `https://www.countryflags.io/${this.countries.code}/flat/64.png`;
         console.log(this.countries);
 
       },
@@ -64,33 +68,18 @@ export class CountriesComponent implements OnInit {
         this.loading = false;
       },
     });
-
-    // this.dataService.getDatewiseData(country).subscribe((result) => {
-    //   this.dateWiseData = result;
-    //   console.log(this.dateWiseData);
-    //   this.dateWiseData.forEach(data => {
-    //       this.datatable.push([data.date.toString(), data.cases]);
-    //       //console.log(this.datatable);
-    //   });
-    //   console.log(this.datatable);
-    // });
   }
 
   updateChart(country: string) {
     this.chart = Object.create(this.chart);
     this.datatable = [];
     this.dataService.getDatewiseData(country).subscribe((result) => {
-      console.log(result);
-
       this.dateWiseData = result;
-      console.log(this.dateWiseData);
       this.dateWiseData.forEach(data => {
         this.daten = new Date(Date.parse(data.date))
           this.datatable.push([this.daten, data.cases]);
           this.datatable = Object.assign([], this.datatable)
-          //console.log(this.datatable);
       });
-      console.log(this.datatable);
     });
   }
 }

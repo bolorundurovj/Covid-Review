@@ -24,7 +24,7 @@ export class DataService {
       }>(`${this.allDataUrl}all`)
       .pipe(
         map((result) => {
-          console.log(result);
+          // console.log(result);
           return result;
         })
       );
@@ -44,20 +44,14 @@ export class DataService {
       }>(`${this.allDataUrl}all`)
       .pipe(
         map((result) => {
-          //console.log(result.country_statistics);
-
           result.country_statistics.forEach((contry) => {
             if (contry['country'] == countryN || contry['code'] == countryN) {
-              console.log(contry);
 
               test = Array(contry);
-              //console.log(test);
             } else {
               test.push(contry['NG']);
-              //console.log(test);
             }
           });
-          console.log(test);
 
           return test;
         })
@@ -1174,7 +1168,7 @@ export class DataService {
       countries.forEach((cou) => {
         if (cou.code == country) {
           nec = cou.country;
-          console.log('NEC', nec);
+          // console.log('NEC', nec);
         }
         return;
       });
@@ -1182,10 +1176,8 @@ export class DataService {
         .get(`https://ncovid19api.herokuapp.com/timeline/${nec}`)
         .pipe(
           map((result) => {
-            console.log('Result');
-
-            console.log(result);
-
+            // console.log('Result');
+            // console.log(result);
             return result;
           })
         );
@@ -1194,8 +1186,7 @@ export class DataService {
         .get(`https://ncovid19api.herokuapp.com/timeline/${country}`)
         .pipe(
           map((result) => {
-            console.log(result);
-
+            // console.log(result);
             return result;
           })
         );
