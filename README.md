@@ -8,9 +8,9 @@
 
 > A simple Covid 19 Tracking Dashboard built with the MEAN stack
 
-### 🏠 [Homepage](https://covid19tracker-v2.netlify.app/)
+### 🏠 [Homepage](https://covidreview.netlify.app/)
 
-### ✨ [Demo](https://covid19tracker-v2.netlify.app/)
+### ✨ [Demo](https://covidreview.netlify.app/)
 
 ## Prerequisites
 
