@@ -28,12 +28,6 @@ npm install
 ng serve
 ```
 
-## Run tests
-
-```sh
-npm run test
-```
-
 ## Author
 
 👤 **Bolorunduro Valiant-Joshua**
