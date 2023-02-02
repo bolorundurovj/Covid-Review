@@ -30,7 +30,7 @@
   "devDependencies": {
     "@angular-builders/custom-webpack": "^15.0.0",
     "@angular-devkit/build-angular": "~15.0.4",
-    "@angular/cli": "~10.2.4",
+    "@angular/cli": "~15.1.4",
     "@angular/compiler-cli": "~10.2.5",
     "@angular/language-service": "~10.2.5",
     "@types/jasmine": "~3.5.0",
